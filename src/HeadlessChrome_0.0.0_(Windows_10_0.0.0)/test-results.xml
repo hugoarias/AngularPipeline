@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<testsuite name="HeadlessChrome 0.0.0 (Windows 10 0.0.0)" package="" timestamp="2018-10-17T21:46:05" id="0" hostname="cbbrndharias" tests="3" errors="0" failures="0" time="0.673">
+<testsuite name="HeadlessChrome 0.0.0 (Windows 10 0.0.0)" package="" timestamp="2018-10-19T14:59:36" id="0" hostname="cbbrndharias" tests="3" errors="0" failures="0" time="0.63">
   <properties>
     <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/69.0.3497.100 Safari/537.36"/>
   </properties>
-  <testcase name="AppComponent should create the app" time="0.449" classname="HeadlessChrome_0_0_0_(Windows_10_0_0_0).AppComponent"/>
-  <testcase name="AppComponent should have as title 'AngularPipeline'" time="0.119" classname="HeadlessChrome_0_0_0_(Windows_10_0_0_0).AppComponent"/>
+  <testcase name="AppComponent should create the app" time="0.423" classname="HeadlessChrome_0_0_0_(Windows_10_0_0_0).AppComponent"/>
+  <testcase name="AppComponent should have as title 'AngularPipeline'" time="0.102" classname="HeadlessChrome_0_0_0_(Windows_10_0_0_0).AppComponent"/>
   <testcase name="AppComponent should render title in a h1 tag" time="0.105" classname="HeadlessChrome_0_0_0_(Windows_10_0_0_0).AppComponent"/>
   <system-out>
     <![CDATA[
