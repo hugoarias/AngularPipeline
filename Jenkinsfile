@@ -2,13 +2,13 @@ node {
    checkout scm
 
    stage('Get dependencies') {
-      bat('npm install')
+      bat 'npm install'
    }
    stage('Build') {
-      bat 'node_modules/.bin/ng build')
+      bat 'node_modules/.bin/ng build'
    }
    stage('Unit Tests') {
-      bat 'node_modules/.bin/ng test --browsers ChromeHeadless --watch=false --code-coverage=true')
+      bat 'node_modules/.bin/ng test --browsers ChromeHeadless --watch=false --code-coverage=true'
    }
    stage('Publish to Dev Env') {
       archive 'dist/AngularPipeline/*.*'
