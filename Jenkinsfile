@@ -19,7 +19,7 @@ node {
 	  updateCloudformation('aws cloudformation update-stack --stack-name incentral --template-url https://s3-us-west-2.amazonaws.com/incentral-deploy-artifacts/s3.json --parameters ParameterKey=BucketName,ParameterValue=incentral --no-use-previous-template')
 	  updateCloudformation('aws cloudformation update-stack --stack-name cloudfront --template-url https://s3-us-west-2.amazonaws.com/incentral-deploy-artifacts/cloudfront.json --parameters ParameterKey=BucketName,ParameterValue=incentral --no-use-previous-template')
 
-	  bat 'aws s3 cp ./dist/AngularPipeline/ s3://incentral --recursive --acl public-read-write --exclude "./dist/AngularPipeline/runtime.js.map"'
+	  copyFileToS3('aws s3 cp ./dist/AngularPipeline/ s3://incentral --recursive --acl public-read-write --exclude "./dist/AngularPipeline/runtime.js.map"');
    }
    stage('E2E Tests') {
      // Replace with actual commands for e2e tests
@@ -50,5 +50,13 @@ def updateCloudformation(url) {
 		bat url
 	} catch(e) {
 		println(e);
+	}
+}
+
+def copyFileToS3(commnad) {
+	try {
+		bat command
+	} catch (e) {
+		println(e)
 	}
 }
