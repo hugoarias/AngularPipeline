@@ -21,10 +21,7 @@ node {
 
 	  powershell '''Get-ChildItem ".\\dist\\AngularPipeline\\" |
 		Foreach-Object {
-			$content = Get-Content $_.FullName
-
-			#filter and save content to the original file
-			Set-Content -Encoding utf8 $_.FullName
+			Get-Content $_.FullName | Set-Content -Encoding utf8 $_.FullName
 		}'''
 
 	  copyFileToS3('aws s3 cp ./dist/AngularPipeline/ s3://incentral --recursive --acl public-read-write');
