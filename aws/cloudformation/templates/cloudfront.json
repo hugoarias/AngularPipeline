@@ -1,0 +1,74 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Parameters": {
+		"BucketName": {
+			"Type": "String",
+			"Description": "Name of the origin bucket"
+		}
+	},
+	"Resources": {
+		"CloudFrontDistribution": {
+			"Type": "AWS::CloudFront::Distribution",
+			"Properties": {
+				"DistributionConfig": {
+					"Origins": [
+						{
+							"DomainName": {
+								"Fn::Join": [
+									".",
+									[
+										{
+											"Ref": "BucketName"
+										},
+										"s3",
+										"amazonaws",
+										"com"
+									]
+								]
+							},
+							"Id": "s3Origin",
+							"CustomOriginConfig": {
+								"HTTPPort": "80",
+								"HTTPSPort": "443",
+								"OriginProtocolPolicy": "https-only"
+							}
+						}
+					],
+					"PriceClass": "PriceClass_100",
+					"Enabled": "true",
+					"DefaultRootObject": "index.html",
+					"DefaultCacheBehavior": {
+						"AllowedMethods": [
+							"DELETE",
+							"GET",
+							"HEAD",
+							"OPTIONS",
+							"PATCH",
+							"POST",
+							"PUT"
+						],
+						"TargetOriginId": "s3Origin",
+						"ForwardedValues": {
+							"QueryString": "false",
+							"Cookies": {
+								"Forward": "none"
+							}
+						},
+						"ViewerProtocolPolicy": "allow-all"
+					}
+				}
+			}
+		}
+	},
+	"Outputs": {
+		"CloudFrontDomainName": {
+			"Value": {
+				"Fn::GetAtt": [
+					"CloudFrontDistribution",
+					"DomainName"
+				]
+			},
+			"Description": "URL for website hosted on S3"
+		}
+	}
+}
