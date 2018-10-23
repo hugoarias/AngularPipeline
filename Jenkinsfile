@@ -53,7 +53,7 @@ def updateCloudformation(url) {
 	}
 }
 
-def copyFileToS3(commnad) {
+def copyFileToS3(command) {
 	try {
 		bat command
 	} catch (e) {
