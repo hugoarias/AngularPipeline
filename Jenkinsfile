@@ -19,7 +19,15 @@ node {
 	  updateCloudformation('aws cloudformation update-stack --stack-name incentral --template-url https://s3-us-west-2.amazonaws.com/incentral-deploy-artifacts/s3.json --parameters ParameterKey=BucketName,ParameterValue=incentral --no-use-previous-template')
 	  updateCloudformation('aws cloudformation update-stack --stack-name cloudfront --template-url https://s3-us-west-2.amazonaws.com/incentral-deploy-artifacts/cloudfront.json --parameters ParameterKey=BucketName,ParameterValue=incentral --no-use-previous-template')
 
-	  copyFileToS3('aws s3 cp ./dist/AngularPipeline/ s3://incentral --recursive --acl public-read-write --exclude "./dist/AngularPipeline/runtime.js.map"');
+	  powershell '''Get-ChildItem ".\\dist\\AngularPipeline\\" |
+		Foreach-Object {
+			$content = Get-Content $_.FullName
+
+			#filter and save content to the original file
+			Set-Content -Encoding utf8 $_.FullName
+		}'''
+
+	  copyFileToS3('aws s3 cp ./dist/AngularPipeline/ s3://incentral --recursive --acl public-read-write');
    }
    stage('E2E Tests') {
      // Replace with actual commands for e2e tests
